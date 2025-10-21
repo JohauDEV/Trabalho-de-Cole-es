@@ -3,8 +3,6 @@
 ## Integrantes do Grupo
 - João Ricardo de Brito Melo Santos
 
-> Obs.: substitua os nomes dos integrantes 2 e 3 se necessário. Máximo de 3 integrantes.
-
 ---
 
 ## Breve descrição do projeto
