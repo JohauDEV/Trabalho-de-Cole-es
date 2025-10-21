@@ -1,67 +1,41 @@
-# 🎓 Trabalho de POO — Coleções Java
+# Trabalho de POO — Coleções Java
 
-## 📘 Descrição Geral
-Este projeto foi desenvolvido como parte de um **trabalho de Programação Orientada a Objetos (POO)** com o objetivo de praticar o uso das coleções **`List`**, **`Set`** e **`Map`** da linguagem Java.
+## Integrantes do Grupo
+- João Ricardo de Brito Melo Santos
 
-O sistema simula o **controle de estudantes, disciplinas e notas** de uma escola de ensino médio, permitindo armazenar, organizar e associar dados de forma eficiente.  
-
-O código está organizado em múltiplas classes que representam as entidades e operações principais do problema.
+> Obs.: substitua os nomes dos integrantes 2 e 3 se necessário. Máximo de 3 integrantes.
 
 ---
 
-## 🧠 Estrutura e Conceitos
-
-### 🅰️ Parte A — List (Lista de Estudantes)
-Gerencia estudantes usando `ArrayList`.
-
-**Funcionalidades:**
-- Adicionar, remover e buscar estudantes.
-- Ordenar alfabeticamente por nome.
-- Retornar estudantes cujo nome contém uma substring (case-insensitive).
-
-**Classe:** `ListaEstudantes`
+## Breve descrição do projeto
+Este projeto implementa um pequeno sistema escolar em Java que gerencia **estudantes**, **disciplinas** e **matrículas/notas** usando as coleções da linguagem (List, Set e Map).  
+O programa organiza os dados em classes separadas (Estudante, Disciplina, Matricula, ListaEstudantes, CadastroDisciplinas, HistoricoNotas) e a classe `Main` integra tudo mostrando relatórios como: lista de estudantes (ordenada e por cadastro), disciplinas, matrículas por aluno, médias por aluno e por disciplina, top N alunos e listas de aprovados/reprovados conforme critérios.
 
 ---
 
-### 🅱️ Parte B — Set (Cadastro de Disciplinas)
-Controla disciplinas únicas usando `LinkedHashSet`.
+## Justificativa das escolhas de coleções e implementações
 
-**Funcionalidades:**
-- Adicionar disciplinas (evitando duplicatas).
-- Remover disciplinas.
-- Listar todas as disciplinas na ordem de inserção.
-- Detectar duplicatas ao importar dados.
+### `List` — `ArrayList` (em `ListaEstudantes`)
+- **Por que List:** precisamos manter uma coleção de estudantes onde a ordem de cadastro importa, facilitar iteração, buscas e ordenação.
+- **Implementação (`ArrayList`):** oferece acesso por índice eficiente e boa performance para iteração e ordenação (uso de `Collections.sort`/`Comparator`). Para este trabalho a maioria das operações são leituras e ordenações, portanto `ArrayList` é apropriado.
 
-**Classe:** `CadastroDisciplinas`
+### `Set` — `LinkedHashSet` (em `CadastroDisciplinas`)
+- **Por que Set:** garantir que não haja disciplinas duplicadas (mesmo código não pode existir duas vezes).
+- **Implementação (`LinkedHashSet`):** evita duplicatas e mantém a **ordem de inserção**, que é útil para exibir as disciplinas na sequência em que foram cadastradas (requisito do enunciado). `HashSet` descartaria a ordem, `TreeSet` ordenaria por chave (o que também é útil, mas não preserva inserção).
 
----
-
-### 🅲 Parte C — Map (Matrículas e Notas)
-Associa estudantes às suas disciplinas e notas utilizando `HashMap<Integer, List<Matricula>>`.
-
-**Funcionalidades:**
-- Adicionar e remover matrículas.
-- Consultar notas e médias de estudantes.
-- Calcular médias por disciplina.
-- Retornar os melhores alunos (Top N).
-
-**Classe:** `HistoricoNotas`
+### `Map` — `HashMap<Integer, List<Matricula>>` (em `HistoricoNotas`)
+- **Por que Map:** precisamos associar cada estudante (pela `id`) às suas matrículas/ notas — ou seja, uma estrutura chave → valor.
+- **Implementação (`HashMap`):** fornece acesso O(1) esperado por id do estudante, o que é eficiente para consultas, inserções e remoções. O valor é uma `List<Matricula>` (lista de objetos `Matricula`) para armazenar múltiplas disciplinas e notas por estudante.
 
 ---
 
-### 🅳 Parte D — Integração
-Integra todas as coleções e exibe relatórios completos.
+## Como executar o programa (passo a passo simples) e gerar `output.txt`
 
-**Funcionalidades:**
-- Exibir estudantes (ordem de cadastro e ordenados por nome).
-- Exibir disciplinas cadastradas.
-- Exibir matrículas, notas e médias.
-- Calcular médias por disciplina.
-- Mostrar top 3 alunos e aprovados.
+> Presume-se que o diretório contenha os arquivos `.java` do projeto:
+> `Estudante.java`, `Disciplina.java`, `Matricula.java`, `ListaEstudantes.java`, `CadastroDisciplinas.java`, `HistoricoNotas.java` e `Main.java`.
 
-**Classe:** `Main`
+1. Abra um terminal na pasta do projeto.
 
----
-
-## 🧱 Estrutura de Arquivos
-
+2. Compile todos os arquivos `.java`:
+```bash
+javac *.java
